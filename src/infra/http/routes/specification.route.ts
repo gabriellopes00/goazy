@@ -1,8 +1,9 @@
 import { Router } from 'express'
+import { makeCreateSpecificationController } from '../factories/controllers/create-specification-controller'
 
 const specification = Router()
 
-specification.post('/')
+specification.post('/', makeCreateSpecificationController().handle)
 specification.get('/')
 specification.get('/:id')
 specification.patch('/:id')

@@ -6,4 +6,5 @@ export interface SaveCategoryRepository {
 
 export interface FindCategoryRepository {
   findByName(name: string): Promise<Category>
+  findAll(): Promise<Category[]>
 }
