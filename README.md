@@ -1,2 +1,2 @@
-# drive.it
+# Goazy
 Car rental platform. 🚗💵
