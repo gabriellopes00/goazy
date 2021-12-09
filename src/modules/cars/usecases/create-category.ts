@@ -1,5 +1,4 @@
-import { FindCategoryRepository } from '../repositories/find-category-repository'
-import { SaveCategoryRepository } from '../repositories/save-category-repository'
+import { SaveCategoryRepository, FindCategoryRepository } from '../repositories/category-repository'
 
 export interface CreateCategoryDTO {
   name: string
