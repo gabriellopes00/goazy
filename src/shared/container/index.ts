@@ -1,4 +1,5 @@
 import { PgCategoryRepository } from '@/infra/database/repositories/category-repository'
+import { PgSpecificationRepository } from '@/infra/database/repositories/specification-repository'
 import {
   FindCategoryRepository,
   SaveCategoryRepository
@@ -16,5 +17,5 @@ container.registerSingleton<SaveCategoryRepository & FindCategoryRepository>(
 
 container.registerSingleton<SaveSpecificationRepository & FindSpecificationRepository>(
   'PgSpecificationReposiotry',
-  null
+  PgSpecificationRepository
 )
