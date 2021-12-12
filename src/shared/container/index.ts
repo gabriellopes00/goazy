@@ -1,5 +1,7 @@
+import { PgAccountRepository } from '@/infra/database/repositories/account-repository'
 import { PgCategoryRepository } from '@/infra/database/repositories/category-repository'
 import { PgSpecificationRepository } from '@/infra/database/repositories/specification-repository'
+import { SaveAccountRepository } from '@/modules/accounts/repositories/save-account-repository'
 import {
   FindCategoryRepository,
   SaveCategoryRepository
@@ -16,6 +18,8 @@ container.registerSingleton<SaveCategoryRepository & FindCategoryRepository>(
 )
 
 container.registerSingleton<SaveSpecificationRepository & FindSpecificationRepository>(
-  'PgSpecificationReposiotry',
+  'PgSpecificationRepository',
   PgSpecificationRepository
 )
+
+container.registerSingleton<SaveAccountRepository>('PgAccountRepository', PgAccountRepository)
