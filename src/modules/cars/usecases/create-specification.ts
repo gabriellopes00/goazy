@@ -1,3 +1,4 @@
+import { inject } from 'tsyringe'
 import { Specification } from '../entities/specification/specification'
 import {
   FindSpecificationRepository,
@@ -11,6 +12,7 @@ export interface CreateSpecificationDTO {
 
 export class CreateSpecification {
   constructor(
+    @inject('PgSpecificationRepository')
     private readonly repository: SaveSpecificationRepository & FindSpecificationRepository
   ) {}
 

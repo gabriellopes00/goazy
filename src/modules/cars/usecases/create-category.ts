@@ -1,3 +1,4 @@
+import { inject, injectable } from 'tsyringe'
 import { SaveCategoryRepository, FindCategoryRepository } from '../repositories/category-repository'
 
 export interface CreateCategoryDTO {
@@ -5,8 +6,12 @@ export interface CreateCategoryDTO {
   description: string
 }
 
+@injectable()
 export class CreateCategory {
-  constructor(private readonly repository: SaveCategoryRepository & FindCategoryRepository) {}
+  constructor(
+    @inject('PgCategoryRepository')
+    private readonly repository: SaveCategoryRepository & FindCategoryRepository
+  ) {}
 
   public async execute(params: CreateCategoryDTO) {
     const existingCategory = await this.repository.findByName(params.name)

@@ -1,9 +1,14 @@
 import { parse } from 'csv-parse'
 import { createReadStream, promises } from 'fs'
+import { inject, injectable } from 'tsyringe'
 import { SaveCategoryRepository } from '../repositories/category-repository'
 
+@injectable()
 export class ImportCategory {
-  constructor(private readonly repository: SaveCategoryRepository) {}
+  constructor(
+    @inject('PgSpecificationRepository')
+    private readonly repository: SaveCategoryRepository
+  ) {}
 
   public async execute(file: Express.Multer.File): Promise<void> {
     return new Promise((res, _) => {

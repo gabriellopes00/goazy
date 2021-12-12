@@ -1,22 +1,17 @@
+import { CreateCategoryController } from '@/modules/cars/controllers/create-category-controller'
+import { ImportCategoryController } from '@/modules/cars/controllers/import-category-controller'
+import '@/shared/container'
 import { Router } from 'express'
-import { makeCreateCategoryController } from '../factories/controllers/create-category-controller'
 import multer from 'multer'
-import { ImportCategory } from '@/modules/cars/usecases/import-category'
 
-const uploader = multer({
-  dest: './tmp'
-})
+const uploader = multer({ dest: './tmp' })
 
 const categoriesRoutes = Router()
 
-categoriesRoutes.post('/', makeCreateCategoryController().handle)
-categoriesRoutes.post('/import/:source', uploader.single('file'), async (req, res) => {
-  const { file } = req
-  await new ImportCategory(null).execute(file)
-  res.sendStatus(200)
-})
-categoriesRoutes.get('/:id')
-categoriesRoutes.patch('/:id')
-categoriesRoutes.delete('/:id')
+const createCategoryController = new CreateCategoryController()
+categoriesRoutes.post('/', createCategoryController.handle)
+
+const importCategoryController = new ImportCategoryController()
+categoriesRoutes.post('/import/:source', uploader.single('file'), importCategoryController.handle)
 
 export { categoriesRoutes }
