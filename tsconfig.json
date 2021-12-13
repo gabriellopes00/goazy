@@ -17,9 +17,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@t/*": ["tests/*"]
+      "@t/*": ["__tests__/*"]
     }
   },
-  "include": ["src/**/*", "tests/**/*"],
+  "include": ["src/**/*", "__tests__/**/*"],
   "exclude": ["node_modules/", "dist/", "coverage/"]
 }
