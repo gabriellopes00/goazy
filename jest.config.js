@@ -5,7 +5,7 @@ module.exports = {
   testEnvironment: 'node',
   collectCoverageFrom: ['<rootDir>/**/*.ts', '!<rootDir>/**/*.d.ts'],
   testPathIgnorePatterns: ['<rootDir>/tests/mocks/'],
-  testMatch: [__dirname + '/tests/**/*.test.ts'],
+  testMatch: [__dirname + '/__tests__/**/*.test.ts'],
   coverageDirectory: 'coverage/',
   coverageProvider: 'v8',
   clearMocks: true,
