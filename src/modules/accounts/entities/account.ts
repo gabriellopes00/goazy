@@ -4,6 +4,7 @@ export class Account {
   email: string
   password: string
   driverLicense: string
+  avatarUrl: string
   isAdmin: boolean
   createdAt: Date
 }

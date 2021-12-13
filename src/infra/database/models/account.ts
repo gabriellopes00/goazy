@@ -17,6 +17,9 @@ export class AccountModel {
   @Column({ name: 'driver_license' })
   driverLicense: string
 
+  @Column({ name: 'avatar_url' })
+  avatarUrl: string
+
   @Column({ name: 'is_admin' })
   isAdmin: boolean
 

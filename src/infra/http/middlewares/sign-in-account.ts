@@ -12,7 +12,8 @@ export async function signInAccount(
   const payload = token.split(' ')[1]
 
   try {
-    verify(payload, '3EEa09sdf05a7iB7sIGdf90i') as { id: string }
+    const { id } = verify(payload, '3EEa09sdf05a7iB7sIGdf90i') as { id: string }
+    req.account = { id }
   } catch (error) {
     return res.status(401).json({ error: 'Invalid auth token' })
   }
