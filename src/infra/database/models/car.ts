@@ -1,5 +1,14 @@
 import { Category } from '@/modules/cars/entities/category/category'
-import { Column, CreateDateColumn, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm'
+import { Specification } from '@/modules/cars/entities/specification/specification'
+import {
+  Column,
+  CreateDateColumn,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  PrimaryColumn
+} from 'typeorm'
 import { CategoryModel } from './category'
 
 export class CarModel {
@@ -36,4 +45,12 @@ export class CarModel {
   @ManyToOne(() => CategoryModel)
   @JoinColumn({ name: 'category_id' })
   category: Category
+
+  @ManyToMany(() => Specification)
+  @JoinTable({
+    name: 'specification_cars',
+    joinColumns: [{ name: 'car_id' }],
+    inverseJoinColumns: [{ name: 'specification_id' }]
+  })
+  specifications: Specification[]
 }

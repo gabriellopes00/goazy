@@ -1,3 +1,5 @@
+import { Specification } from '../specification/specification'
+
 export class Car {
   id: string
   name: string
@@ -9,4 +11,5 @@ export class Car {
   brand: string
   category_id: string
   createdAt: Date
+  specifications: Specification[]
 }

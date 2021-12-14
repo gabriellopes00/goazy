@@ -6,4 +6,5 @@ export interface SaveSpecificationRepository {
 
 export interface FindSpecificationRepository {
   findByName(name: string): Promise<Specification>
+  findByIds(ids: string[]): Promise<Specification[]>
 }
