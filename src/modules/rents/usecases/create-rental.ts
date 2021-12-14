@@ -1,3 +1,4 @@
+import { DateHandler } from '@/core/infra/date-handler'
 import { inject, injectable } from 'tsyringe'
 import { Rental } from '../entities/rental'
 import { FindRentalRepository, SaveRentalRepository } from '../repositories/rental-repository'
@@ -12,7 +13,8 @@ export interface CreateRentalDTO {
 export class CreateRental {
   constructor(
     @inject('RentalRepository')
-    private readonly repository: SaveRentalRepository & FindRentalRepository
+    private readonly repository: SaveRentalRepository & FindRentalRepository,
+    private readonly dateHandler: DateHandler
   ) {}
 
   public async execute(data: CreateRentalDTO): Promise<Rental> {
@@ -21,6 +23,10 @@ export class CreateRental {
 
     const rentalOpenToAccount = await this.repository.findOpenByAccount(data.accountId)
     if (rentalOpenToAccount) throw new Error('account already has a rental in progress')
+
+    const now = new Date()
+    const compare = this.dateHandler.compareHours(now, data.expectedReturnDate)
+    if (compare < 24) throw new Error('minimum rental hours not attended')
 
     const rental: Rental = {
       id: 'uuid',

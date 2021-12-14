@@ -10,9 +10,9 @@ export class CreateRentalsTable1639490049477 implements MigrationInterface {
           { name: 'car_id', type: 'uuid', isNullable: false },
           { name: 'account_id', type: 'uuid', isNullable: false },
           { name: 'start_date', type: 'timestampz', isNullable: false },
-          { name: 'end_date', type: 'timestampz', isNullable: false },
+          { name: 'end_date', type: 'timestampz', isNullable: true },
           { name: 'expected_return_date', type: 'timestampz', isNullable: false },
-          { name: 'total', type: 'numeric', isNullable: false },
+          { name: 'total', type: 'numeric', isNullable: true },
           { name: 'created_at', type: 'timestampz', isNullable: false },
           { name: 'updated_at', type: 'timestampz', isNullable: false }
         ],
