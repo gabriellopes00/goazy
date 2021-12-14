@@ -14,7 +14,7 @@ export interface CreateCarDTO {
 }
 
 @injectable()
-export class CreteCar {
+export class CreateCar {
   constructor(
     @inject('CarRepository')
     private readonly repository: CarRepository.Save & CarRepository.Find
