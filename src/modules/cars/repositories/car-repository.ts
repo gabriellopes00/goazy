@@ -7,5 +7,6 @@ export namespace CarRepository {
 
   export interface Find {
     findByLicensePlate(licensePlate: string): Promise<Car>
+    findAvailable(params: { name?: string; brand?: string; category_id?: string }): Promise<Car[]>
   }
 }
