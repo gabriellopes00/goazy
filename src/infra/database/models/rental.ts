@@ -1,4 +1,13 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from 'typeorm'
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryColumn,
+  UpdateDateColumn
+} from 'typeorm'
+import { CarModel } from './car'
 
 @Entity('rentals')
 export class RentalModel {
@@ -27,4 +36,8 @@ export class RentalModel {
 
   @UpdateDateColumn()
   updatedAt: Date
+
+  @ManyToOne(() => CarModel)
+  @JoinColumn({ name: 'car_id' })
+  car: CarModel
 }
