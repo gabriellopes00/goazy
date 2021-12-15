@@ -8,6 +8,7 @@ module.exports = {
   testMatch: [__dirname + '/__tests__/**/*.test.ts'],
   coverageDirectory: 'coverage/',
   coverageProvider: 'v8',
+  coverageReporters: ['text-sum', 'lcov'],
   clearMocks: true,
   preset: 'ts-jest',
   moduleNameMapper: {
