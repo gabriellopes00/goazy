@@ -3,6 +3,7 @@ import { Car } from '../entities/car/car'
 export namespace CarRepository {
   export interface Save {
     save(data: Car): Promise<void>
+    setAvailable(id: string, available: boolean): Promise<void>
   }
 
   export interface Find {

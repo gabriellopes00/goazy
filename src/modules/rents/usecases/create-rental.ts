@@ -1,4 +1,6 @@
 import { DateHandler } from '@/core/infra/date-handler'
+import { CarRepository } from '@/modules/cars/repositories/car-repository'
+import { v4 as uuid } from 'uuid'
 import { inject, injectable } from 'tsyringe'
 import { Rental } from '../entities/rental'
 import { FindRentalRepository, SaveRentalRepository } from '../repositories/rental-repository'
@@ -14,7 +16,8 @@ export class CreateRental {
   constructor(
     @inject('RentalRepository')
     private readonly repository: SaveRentalRepository & FindRentalRepository,
-    private readonly dateHandler: DateHandler
+    private readonly dateHandler: DateHandler,
+    private readonly carRepository: CarRepository.Save
   ) {}
 
   public async execute(data: CreateRentalDTO): Promise<Rental> {
@@ -29,7 +32,7 @@ export class CreateRental {
     if (compare < 24) throw new Error('minimum rental hours not attended')
 
     const rental: Rental = {
-      id: 'uuid',
+      id: uuid(),
       ...data,
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -38,6 +41,7 @@ export class CreateRental {
       total: null
     }
 
+    await this.carRepository.setAvailable(rental.carId, false)
     await this.repository.save(rental)
     return rental
   }

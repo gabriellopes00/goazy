@@ -7,4 +7,5 @@ export interface SaveRentalRepository {
 export interface FindRentalRepository {
   findOpenByCar(carId: string): Promise<Rental>
   findOpenByAccount(accountId: string): Promise<Rental>
+  findById(rentalId: string): Promise<Rental>
 }
